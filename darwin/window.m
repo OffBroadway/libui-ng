@@ -282,6 +282,13 @@ void uiWindowSetPosition(uiWindow *w, int x, int y)
 	w->suppressPositionChanged = NO;
 }
 
+void uiWindowCenter(uiWindow *w)
+{
+	w->suppressPositionChanged = YES;
+	[w->window center];
+	w->suppressPositionChanged = NO;
+}
+
 void uiWindowOnPositionChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
 {
 	w->onPositionChanged = f;
@@ -444,6 +451,7 @@ uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar)
 		uiWindow:w];
 	uiWindowSetTitle(w, title);
 	uiWindowSetResizeable(w, 1);
+	uiWindowCenter(w);
 
 	uiWindowOnClosing(w, defaultOnClosing, NULL);
 	uiWindowOnFocusChanged(w, defaultOnFocusChanged, NULL);

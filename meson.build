@@ -4,7 +4,7 @@
 
 # TODO remove cpp from this list once https://github.com/mesonbuild/meson/issues/5181 is settled; move it to the OS checks and under cpp-multithread
 project('libui', ['c', 'cpp'],
-	meson_version: '>=0.58.0',
+	meson_version: '>=0.56.0',
 	default_options: [
 		'buildtype=debug',				# build debug by default
 		'default_library=shared',			# build shared libraries by default
@@ -69,7 +69,7 @@ libui_project_link_args = []
 if libui_OS == 'darwin'
 	libui_darwin_langs = ['c', 'objc']
 
-	libui_macosx_version_min = '-mmacosx-version-min=10.8'
+	libui_macosx_version_min = '-mmacosx-version-min=10.15'
 	add_global_arguments(libui_macosx_version_min, language: libui_darwin_langs)
 	add_global_link_arguments(libui_macosx_version_min, language: libui_darwin_langs)
 
